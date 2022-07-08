@@ -18,11 +18,13 @@
 const print = @import("std").debug.print;
 
 pub fn main() void {
-    const zig = [_]u8{
+    var zig = [_]u8{
         0o131, // octal
         0b1101000, // binary
         0x66, // hex
     };
+
+    zig = "Zig".*;
 
     print("{s} is cool.\n", .{zig});
 }

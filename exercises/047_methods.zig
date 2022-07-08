@@ -43,6 +43,7 @@
 // Earth will be doomed!
 //
 const std = @import("std");
+const assert = std.debug.assert;
 
 // Look at this hideous Alien struct. Know your enemy!
 const Alien = struct {
@@ -59,6 +60,13 @@ const Alien = struct {
 // Your trusty weapon. Zap those aliens!
 const HeatRay = struct {
     damage: u8,
+
+    // kfj:
+    // > We hate this method:
+    // Why? Isn't that just a ctor? Is ctor with side effect is discouraged? Probably.
+    // Also, if the ctor is a member function (method) isn't that mean that every time the struct is constructed
+    // the function will always exists in the struct? i.e. not a static function.
+    // Then I guess the better approach is to have a freestanding function that act as ctor for the struct.
 
     // We love this method:
     pub fn zap(self: HeatRay, alien: *Alien) void {
@@ -87,8 +95,8 @@ pub fn main() void {
         // Loop through every alien by reference (* makes a pointer capture value)
         for (&aliens) |*alien| {
 
-            // *** Zap the alien with the heat ray here! ***
-            ???.zap(???);
+            // *** Zap the Alien Here! ***
+            heat_ray.zap(alien);
 
             // If the alien's health is still above 0, it's still alive.
             if (alien.health > 0) aliens_alive += 1;

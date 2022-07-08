@@ -43,6 +43,13 @@ pub fn main() void {
     // Feel free to run this program without adding Zump. What does
     // it do and why?
 
+    chars[1] = Character{
+        .class = Class.bard,
+        .gold = 10,
+        .health = 100,
+        .experience = 20,
+    };
+
     // Printing all RPG characters in a loop:
     for (chars, 0..) |c, num| {
         std.debug.print("Character {} - G:{} H:{} XP:{}\n", .{
@@ -56,3 +63,11 @@ pub fn main() void {
 // (which is the default), Zig writes the repeating pattern "10101010"
 // in binary (or 0xAA in hex) to all undefined locations to make them
 // easier to spot when debugging.
+
+// kfj:
+// tried to run with non-debug build (zig run -O ReleaseSafe) but the program still prints the same output as
+// the debug build:
+// ```
+// Character 1 - G:20 H:100 XP:10
+// Character 2 - G:2863311530 H:170 XP:2863311530
+// ```
